@@ -1,1 +1,1 @@
-# CSE-585-Face-Recognition
+# Face Recognition in Low Feature Dimension
