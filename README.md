@@ -1,1 +1,1 @@
-# Face Recognition in Low Feature Dimension
+# Face Recognition at Low Feature Dimension
