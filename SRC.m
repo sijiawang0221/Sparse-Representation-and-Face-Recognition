@@ -33,7 +33,7 @@ end
 if eigenface    
     [disc_set, ~, ~] = Eigenface_f(tr.x, eigenface_dim);
     tr.x  =  disc_set' * tr.x;
-    te.x  =  disc_set' * te.X;
+    te.x  =  disc_set' * te.x;
 end
 
 % normalize the columns of A to have unit l2-norm
@@ -45,18 +45,15 @@ classes = unique(tr.y);
 class_num = length(classes);
 
 % solve the l1-minimization problem
-P = 1/(tr.x'*tr.x+1e-5*eye(n))*tr.x';
-x0 = P*te.x;
-
+P = inv(tr.x'*tr.x+1e-5*eye(n))*tr.x';
+tex = te.x(:,1);
+x0 = P*tex;
 
 % implement Homotopy algorithm
-maxIteration = 5000;
-isNonnegative = false;
-stoppingCriterion = -1;
-[xp, iterationCount] = SolveHomotopy(tr.x, te.x, ...
-                        'maxIteration', maxIteration,...
-                        'isNonnegative', isNonnegative, ...
-                        'stoppingCriterion', stoppingCriterion, ...
+[xp, iterationCount] = SolveHomotopy(tr.x, tex, ...
+                        'maxIteration', 5000,...
+                        'isNonnegative', false, ...
+                        'stoppingCriterion', -1, ...
                         'groundtruth', x0, ...
                         'lambda', lambda, ...
                         'tolerance', epsilon);  
@@ -66,7 +63,7 @@ stoppingCriterion = -1;
 residuals = zeros(1, max(classes));
 for j = 1 :class_num
     idx = find(tr.y == classes(j));
-    residuals(int(classes(j))) = norm(te.x - tr.x(:,idx)*xp(idx));
+    residuals(round(classes(j))) = norm(te.x - tr.x(:,idx)*xp(idx));
 end
 
 % get the predicted label with minimum residual
