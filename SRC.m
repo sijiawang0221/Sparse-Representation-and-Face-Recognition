@@ -3,7 +3,7 @@ function [label, iterationCount] = SRC(tr, te, epsilon, lambda, options)
 % Input: 
 %       tr.x        training samples of size m*n
 %       tr.y        class label of training 
-%       te          a test sample of size m*1    
+%       te.x        a test sample of size m*k    
 %       epsilon     optimal error tolerance epsilon
 %       lambda      coefficient controls data fidelity
 % Output:
@@ -14,7 +14,8 @@ function [label, iterationCount] = SRC(tr, te, epsilon, lambda, options)
 %       [3] L. Zhang, et all. A Simple Homotopy Algorithm for Compressive Sensing
 
 % get the size of training sample
-[m, n] = size(tr.x);
+[~, n] = size(tr.x);
+[~, k] = size(te.x);
 
 % extract options    
 if ~isfield(options, 'eigenface')
@@ -45,29 +46,33 @@ classes = unique(tr.y);
 class_num = length(classes);
 
 % solve the l1-minimization problem
-P = inv(tr.x'*tr.x+1e-5*eye(n))*tr.x';
-tex = te.x(:,1);
-x0 = P*tex;
+P = tr.x'/(tr.x'*tr.x+1e-5*eye(n));
+label = zeros(1,k);
+iterationCount = zeors(1,k);
+for i = 1:k
+    % tex is a sample to predict
+    tex = te.x(:,i);
+    x0 = P*tex;
 
-% implement Homotopy algorithm
-[xp, iterationCount] = SolveHomotopy(tr.x, tex, ...
-                        'maxIteration', 5000,...
-                        'isNonnegative', false, ...
-                        'stoppingCriterion', -1, ...
-                        'groundtruth', x0, ...
-                        'lambda', lambda, ...
-                        'tolerance', epsilon);  
+    % implement Homotopy algorithm
+    [xp, iterationCount(i)] = SolveHomotopy(tr.x, tex, ...
+                            'maxIteration', 5000,...
+                            'isNonnegative', false, ...
+                            'stoppingCriterion', -1, ...
+                            'groundtruth', x0, ...
+                            'lambda', lambda, ...
+                            'tolerance', epsilon);  
 
 
-% calculate residual for each class
-residuals = zeros(1, max(classes));
-for j = 1 :class_num
-    idx = find(tr.y == classes(j));
-    residuals(round(classes(j))) = norm(te.x - tr.x(:,idx)*xp(idx));
+    % calculate residual for each class
+    residuals = zeros(1, max(classes));
+    for j = 1 :class_num
+        idx = find(tr.y == classes(j));
+        residuals(round(classes(j))) = norm(te.x - tr.x(:,idx)*xp(idx));
+    end
+
+    % get the predicted label with minimum residual
+    [~, label(i)] = min(residuals); 
 end
-
-% get the predicted label with minimum residual
-[~, label] = min(residuals); 
-
 
 
