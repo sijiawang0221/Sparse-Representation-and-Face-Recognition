@@ -13,7 +13,7 @@ function [label, iterationCount] = SRC(tr, te, epsilon, lambda, options)
 %       [2] https://github.com/hiroyuki-kasai/ClassifierToolbox
 %       [3] L. Zhang, et all. A Simple Homotopy Algorithm for Compressive Sensing
 
-% get the size of training sample
+% get the size of datesets
 [~, n] = size(tr.x);
 [~, k] = size(te.x);
 
@@ -62,7 +62,6 @@ for i = 1:k
                             'groundtruth', x0, ...
                             'lambda', lambda, ...
                             'tolerance', epsilon);  
-
 
     % calculate residual for each class
     residuals = zeros(1, max(classes));
