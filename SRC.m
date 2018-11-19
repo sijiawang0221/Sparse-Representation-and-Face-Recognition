@@ -67,7 +67,7 @@ function [label, iterationCount] = SRC(tr, te, epsilon, lambda, options)
         residuals = zeros(1, max(classes));
         for j = 1 :class_num
             idx = find(tr.y == classes(j));
-            residuals(round(classes(j))) = norm(te.x - tr.x(:,idx)*xp(idx));
+            residuals(round(classes(j))) = norm(tex - tr.x(:,idx)*xp(idx));
         end
 
         % get the predicted label with minimum residual
