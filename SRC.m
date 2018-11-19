@@ -35,6 +35,7 @@ function [label, iterationCount] = SRC(tr, te, epsilon, lambda, options)
         tr.x  =  disc_set' * tr.x;
         te.x  =  disc_set' * te.x;
     end
+    
     [~, n] = size(tr.x);
     [~, k] = size(te.x);
     % normalize the columns of A to have unit l2-norm
@@ -46,7 +47,7 @@ function [label, iterationCount] = SRC(tr, te, epsilon, lambda, options)
     class_num = length(classes);
 
     % solve the l1-minimization problem
-    P = inv(tr.x'*tr.x+1e-5*eye(n))*tr.x';
+    P = (tr.x'\(tr.x'*tr.x+1e-5*eye(n)))';
     label = zeros(1,k);
     iterationCount = zeros(1,k);
     for i = 1:k
