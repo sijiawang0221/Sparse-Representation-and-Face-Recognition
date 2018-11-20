@@ -15,7 +15,7 @@ t   = zeros(1,num);
 err = zeros(1,num);
 
 
-for i = 1:3
+for i = 1:num
     fprintf('running %d th experiment with %d feature dimension\n', i, s(i));
     % set eigenface parameter
     options.eigenface     = true;
