@@ -1,13 +1,14 @@
 function [label, iterationCount] = SRC(tr, te, epsilon, lambda, options)
 % This fuction implement SRC algorithm
 % Input: 
-%       tr.x        training samples of size m*n
-%       tr.y        class label of training 
-%       te.x        a test sample of size m*k    
-%       epsilon     optimal error tolerance epsilon
-%       lambda      coefficient controls data fidelity
+%       tr.X            training samples of size m*n
+%       tr.y            class label of training 
+%       te.X            a test sample of size m*k    
+%       epsilon         optimal error tolerance epsilon
+%       lambda          coefficient controls data fidelity
 % Output:
-%       x           sparse representation, x \in R^{n*1}
+%       label           sparse representation of size R^{n*1}
+%       iterationCount  the number of iterations until termination
 % Reference
 %       [1] J. Wright, et al. Robust Face Recognition via Sparse Representation
 %       [2] https://github.com/hiroyuki-kasai/ClassifierToolbox

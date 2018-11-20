@@ -3,10 +3,10 @@ clear;
 clc;
 
 % load dataset
-load('AR_Face_img_60x43.mat'); 
+load('CMU_Dataset_Test+Train.mat'); 
 
 % given experiment feature dimensions
-s   = [5 10 20 30 40 50 150 200 train_num];
+s   = [5 10 20 30 40 50 150 200 length(TrainSet.y)];
 num = length(s);
 
 % t is the time last of each experiment 
@@ -15,7 +15,8 @@ t   = zeros(1,num);
 err = zeros(1,num);
 
 
-for i = 1:num
+for i = 1:3
+    fprintf('running %d th experiment with %d feature dimension\n', i, s(i));
     % set eigenface parameter
     options.eigenface     = true;
     options.eigenface_dim = s(i);
