@@ -1,5 +1,7 @@
-% This function is modified from Matlab Package: L1-Homotopy
+% Thus function is from ClassifierToolbox
+% [1] https://github.com/hiroyuki-kasai/ClassifierToolbox
 
+% This function is modified from Matlab Package: L1-Homotopy
 % BPDN_homotopy_function.m
 % 
 % Solves the following basis pursuit denoising (BPDN) problem
