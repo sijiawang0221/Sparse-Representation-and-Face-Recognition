@@ -15,7 +15,7 @@ TestSet.y = classTest;
 TrainSet.y = classTrain;
 %Set up initial parameters: number of classes, number of test images,
 %number of train images
-class_num = 20;
+class_num = 38;
 test_num = 1209;
 train_num = 1205;
 %set up parameters for downsampling: size of each image (n x m),
