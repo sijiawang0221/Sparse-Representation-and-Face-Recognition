@@ -19,7 +19,7 @@ num = length(feature_dims);
 t   = zeros(1,num);
 err = zeros(1,num);
 
-for i = feature_dims
+for i = 1:num
     fprintf('running %d th experiment with %d feature dimension\n', i, feature_dims(i));
     % set eigenface parameter
     options.eigenface     = true;
