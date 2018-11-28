@@ -20,7 +20,7 @@ t   = zeros(1,num);
 err = zeros(1,num);
 
 for i = feature_dims
-    fprintf('running %d th experiment with %d feature dimension\n', i, s(i));
+    fprintf('running %d th experiment with %d feature dimension\n', i, feature_dims(i));
     % set eigenface parameter
     options.eigenface     = true;
     options.eigenface_dim = feature_dims(i);
