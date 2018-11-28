@@ -19,7 +19,7 @@ function [label, iterationCount] = SRC(tr, te, epsilon, lambda, options)
 
     % extract options    
     if ~isfield(options, 'eigenface')
-        eigenface = true;
+        eigenface = false;
     else
         eigenface = options.eigenface;
     end    
