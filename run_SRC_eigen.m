@@ -12,7 +12,7 @@ function [err, t] = run_SRC_eigen(TrainSet, TestSet, feature_dims)
 %       t               computation time of the experiment
 
 % given experiment feature dimensions
-num = length(s);
+num = length(feature_dims);
 
 % t is the time last of each experiment 
 % err is the prediction error 
