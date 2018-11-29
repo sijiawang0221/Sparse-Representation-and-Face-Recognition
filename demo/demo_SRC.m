@@ -1,7 +1,7 @@
-close all;
-clear;
-clc;
-
+% close all;
+% clear;
+% clc;
+cd ..;
 
 %% SRC with eigenfaces on CMU database
 fprintf('running experiment\n\t SRC with eigenfaces on CMU database...\n')
