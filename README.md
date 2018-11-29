@@ -1,1 +1,1 @@
-# Face Recognition at Low Feature Dimensions
+# Sparse Representation and Face Recognition
