@@ -10,15 +10,14 @@ function [Data_downsampled] = downSample(DataSet, W, H, Downsample_Factor)
 
     % get the number of samples
     num = length(DataSet.y);
-    
-    W2 = round(W*Downsample_Factor);
-    H2 = round(H*Downsample_Factor);
+    W2 = round(W/Downsample_Factor);
+    H2 = round(H/Downsample_Factor);
     
     Data_downsampled.X = zeros(W2*H2,num);
     Data_downsampled.y = DataSet.y;
 
     for i=1:num
-        temp = reshape(DataSet(:,i),[W H]);
+        temp = reshape(DataSet.X(:,i),[W H]);
         temp2 = imresize(temp,[W2 H2]);
         Data_downsampled.X(:,i) = temp2(:);
     end

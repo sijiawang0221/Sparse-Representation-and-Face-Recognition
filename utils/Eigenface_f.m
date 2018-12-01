@@ -1,3 +1,6 @@
+% Thus function is from ClassifierToolbox
+% [1] https://github.com/hiroyuki-kasai/ClassifierToolbox
+
 function [disc_set,disc_value,Mean_Image]=Eigenface_f(Train_SET,Eigen_NUM)
 %------------------------------------------------------------------------
 % Eigenface computing function
