@@ -32,7 +32,7 @@ TestSet = {};
 TestSet.X = YaleTest;
 TestSet.y = classTest;
 % given downsample factors
-s = [6 7 13	15 18 25 28 33 40 57 80];
+s = [6 7 13 15 18 25 28 33 40 57 80];
 % experiment results: error and runtime
 [err_Yale_eigen, t_Yale_eigen] = run_SRC_downsample(TrainSet, TestSet, s, 192,168);
 
