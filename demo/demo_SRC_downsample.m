@@ -16,7 +16,7 @@ TestSet.y  = classTest;
 % given downsample factors
 s = [9 10 12 18 20 24 30 40 60];
 % experiment results: error and runtime
-[err_CMU_down, t_CMU_down] = run_SRC_downsample(TrainSet, TestSet, s, 120, 128);
+[err_CMU_down, t_CMU_down] = run_SRC_downsample(TrainSet, TestSet, [1], 120, 128);
 
 
 %% SRC with eigenfaces on Yale database
@@ -32,7 +32,7 @@ TestSet.y  = classTest;
 % given downsample factors
 s = [6 7 13 15 18 25 28 33 40 57 80];
 % experiment results: error and runtime
-[err_Yale_eigen, t_Yale_eigen] = run_SRC_downsample(TrainSet, TestSet, s, 192, 168);
+[err_Yale_down, t_Yale_down] = run_SRC_downsample(TrainSet, TestSet, s, 192, 168);
 
 
 %% experiment on AR database
@@ -41,4 +41,4 @@ load('AR_Face_img_60x43.mat');
 % given experiment feature dimensions
 s   = [5 10 20 30 40 50 100 150 200 train_num];
 % experiment results: error and runtime
-[err_AR_eigen, t_AR_eigen] = run_SRC_downsample(TrainSet, TestSet, s);
+[err_AR_down, t_AR_down] = run_SRC_downsample(TrainSet, TestSet, s);
